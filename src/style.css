@@ -1,16 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@200&family=Inter:wght@400;500;700&family=Montserrat:wght@500&display=swap");
+
 :root {
-  --ink: #10110f;
-  --ink-soft: #181a17;
-  --paper: #eae9df;
-  --muted: #96998c;
-  --faint: #3a3d36;
-  --acid: #c9f56b;
-  --orange: #f28657;
-  --serif: Georgia, "Times New Roman", serif;
-  --sans: "Trebuchet MS", "Segoe UI", sans-serif;
+  --ink: #110d12;
+  --ink-soft: #191619;
+  --muted: #97958e;
+  --faint: #3b3938;
+  --paper: #f5f2e1;
+  --acid: #7ed957;
+  --yellow: #d9d457;
+  --cyan: #57d99b;
+  --font-main: "Garet", "Montserrat", "Arial", sans-serif;
+  --font-secondary: "Inter", "IBM Plex Mono", "Arial", sans-serif;
+  --font-code: "IBM Plex Mono", "Arial", sans-serif;
+  --serif: var(--font-main);
+  --sans: var(--font-secondary);
   color: var(--paper);
   background: var(--ink);
-  font-family: var(--sans);
+  font-family: var(--font-secondary);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -48,7 +54,7 @@ a {
   display: flex;
   align-items: center;
   gap: 12px;
-  font: 700 13px/0.95 var(--sans);
+  font: 700 13px/0.95 var(--font-main);
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
@@ -57,9 +63,38 @@ a {
   font-style: normal;
 }
 .wordmark-symbol {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 23px;
+  height: 23px;
   color: var(--acid);
   font-size: 23px;
   line-height: 1;
+}
+.asset-mark {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  overflow: visible;
+}
+.asset-mark img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+  filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+}
+.fallback-star {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  color: var(--acid);
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 nav {
   display: flex;
@@ -67,6 +102,7 @@ nav {
   gap: 34px;
   margin-left: 112px;
   color: var(--muted);
+  font-family: var(--font-main);
   font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -78,11 +114,12 @@ nav a,
   transition: color 0.2s ease;
 }
 nav a:hover,
-nav a.active,
 .header-contact:hover,
-.text-link:hover,
 .footer-links a:hover {
   color: var(--acid);
+}
+.text-link:hover {
+  color: var(--cyan);
 }
 nav a.active {
   color: var(--paper);
@@ -96,7 +133,7 @@ nav a.active {
 .text-link span,
 .button-link span,
 .round-link span {
-  color: var(--acid);
+  color: var(--cyan);
   margin-left: 8px;
 }
 .hero {
@@ -108,7 +145,8 @@ nav a.active {
 }
 .eyebrow {
   margin: 0;
-  color: var(--muted);
+  color: var(--yellow);
+  font-family: var(--font-main);
   font-size: 10px;
   letter-spacing: 0.17em;
   line-height: 1.5;
@@ -120,8 +158,8 @@ nav a.active {
   height: 5px;
   margin: 0 9px 1px;
   border-radius: 50%;
-  background: var(--acid);
-  box-shadow: 0 0 0 5px rgba(201, 245, 107, 0.07);
+  background: var(--cyan);
+  box-shadow: 0 0 0 5px rgba(87, 217, 155, 0.09);
 }
 h1,
 h2,
@@ -144,6 +182,7 @@ h1 span,
   max-width: 380px;
   margin-bottom: 35px;
   color: #c0c2b7;
+  font-family: var(--font-secondary);
   font-size: 15px;
   line-height: 1.7;
 }
@@ -216,6 +255,15 @@ h1 span,
   overflow: hidden;
   background-color: #243125;
 }
+.project-visual--image {
+  background: #243125;
+}
+.project-visual--image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .project-visual::before {
   position: absolute;
   content: "";
@@ -239,6 +287,37 @@ h1 span,
   font-size: 55px;
   font-weight: 100;
 }
+.project-visual--image .visual-mark {
+  inset: auto;
+  width: 100%;
+  height: 100%;
+  background: rgba(17, 13, 18, 0.14);
+  color: rgba(234, 233, 223, 0.7);
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+.project-visual--image .fallback-star,
+.project-visual .fallback-star,
+.wordmark-symbol .fallback-star,
+.about-stamp .fallback-star {
+  opacity: 0;
+}
+.project-visual .visual-mark--fallback .fallback-star {
+  opacity: 1;
+}
+.project-visual .asset-mark img,
+.wordmark-symbol .asset-mark img,
+.about-stamp .asset-mark img {
+  width: 78%;
+  height: 78%;
+  object-fit: contain;
+}
+.project-visual--image .fallback-star {
+  opacity: 0;
+}
+.project-visual--image:hover .visual-mark {
+  opacity: 1;
+}
 .visual-lines {
   position: absolute;
   inset: 0;
@@ -259,21 +338,21 @@ h1 span,
   background: #42433e;
 }
 .visual-field .visual-mark {
-  color: var(--orange);
+  color: var(--yellow);
   font-size: 72px;
 }
 .visual-morrow {
   background: #202d3b;
 }
 .visual-morrow .visual-mark {
-  color: #a3c8dd;
+  color: var(--cyan);
   transform: scale(1.4);
 }
 .visual-orbit {
   background: #472e27;
 }
 .visual-orbit .visual-mark {
-  color: var(--orange);
+  color: var(--yellow);
 }
 .visual-cairn {
   background: #40452f;
@@ -316,8 +395,8 @@ h1 span,
 }
 .tag-list span {
   padding: 5px 7px;
-  border: 1px solid #43473e;
-  color: var(--muted);
+  border: 1px solid rgba(87, 217, 155, 0.45);
+  color: var(--cyan);
   font-size: 9px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -337,8 +416,8 @@ h1 span,
   letter-spacing: -0.05em;
 }
 .manifesto-signature {
-  color: var(--muted);
-  font-size: 11px;
+  color: var(--yellow);
+  font-size: 15px;
 }
 .site-footer {
   padding: 104px 0 28px;
@@ -430,17 +509,23 @@ h1 span,
   border-bottom: 1px solid var(--faint);
 }
 .about-stamp {
-  display: inline-block;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
   margin-top: 82px;
+  width: 62px;
+  height: 62px;
   color: var(--acid);
   font-size: 62px;
   line-height: 0.72;
   transform: rotate(-12deg);
 }
 .about-stamp small {
+  position: relative;
+  z-index: 2;
   display: inline-block;
   padding-left: 5px;
-  color: var(--orange);
+  color: var(--cyan);
   font: 11px/1.15 var(--sans);
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -466,7 +551,7 @@ h1 span,
   border-top: 1px solid var(--faint);
 }
 .principles span {
-  color: var(--acid);
+  color: var(--cyan);
   font-size: 10px;
 }
 .principles h3 {

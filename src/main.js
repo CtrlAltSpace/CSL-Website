@@ -1,53 +1,96 @@
 import "./style.css";
 
+const visualTypes = [
+  "visual-cairn",
+  "visual-orbit",
+  "visual-lumen",
+  "visual-field",
+  "visual-morrow",
+  "visual-afterlight",
+];
+
+const getRandomVisual = () =>
+  visualTypes[Math.floor(Math.random() * visualTypes.length)];
+
+const ensureProjectVisual = (project) => {
+  if (!project.image && !project.visual) {
+    project.visual = getRandomVisual();
+  }
+  return project;
+};
+
 const projects = [
+  // {
+  //   number: "00",
+  //   name: "Example project",
+  //   type: "Example using image",
+  //   description: "This project uses a real image instead of the placeholder visual.",
+  //   tags: ["Image", "Example"],
+  //   image: "/assets/example-project.jpg",
+  //   url: "#",
+  // },
+  // {
+  //   number: "00",
+  //   name: "Example project",
+  //   type: "Example using random visual and logo",
+  //   description: "This project uses a random visual with a logo.",
+  //   tags: ["Random", "Visual", "Logo", "Example"],
+  //   logo: "/assets/logo-mark.svg",
+  //   url: "#",
+  // },
+  // {
+  //   number: "00",
+  //   name: "Example project",
+  //   type: "Example using image",
+  //   description: "This project uses a stated visual instead of an image.",
+  //   tags: ["Visual", "Example"],
+  //   visual: "visual-cairn",
+  //   url: "#",
+  // },
   {
     number: "00",
     name: "Gem",
     type: "Discord companion",
     description:
       "An AI assistant for brainstorming, answers, and smoother Discord conversations.",
-    tags: ["Python", "AI"],
-    visual: "visual-cairn",
+    tags: ["Discord", "AI", "Deprecated"],
     url: "https://discord.com/oauth2/authorize?client_id=1496119217366372402",
   },
+  // {
+  //   number: "01",
+  //   name: "The Annoying Web",
+  //   type: "Web experiment",
+  //   description:
+  //     "A silly, intentionally annoying website built for the fun of it.",
+  //   tags: ["HTML", "JavaScript"],
+  //   visual: "visual-orbit",
+  //   url: "https://ctrlaltspace.github.io/the-annoying-web/",
+  // },
   {
     number: "01",
-    name: "The Annoying Web",
-    type: "Web experiment",
-    description:
-      "A silly, intentionally annoying website built for the fun of it.",
-    tags: ["HTML", "JavaScript"],
-    visual: "visual-orbit",
-    url: "https://ctrlaltspace.github.io/the-annoying-web/",
-  },
-  {
-    number: "02",
     name: "C.A.P.T.C.H.A.",
     type: "Computer vision",
     description:
       "Computer Access Protection through Triggered Camera & Human Analysis.",
-    tags: ["Python", "Security"],
-    visual: "visual-field",
+    tags: ["Python", "Security", "Work in progress"],
     url: "https://github.com/CtrlAltSpace/CAPTCHA",
+  },
+
+  {
+    number: "02",
+    name: "VerID",
+    type: "---",
+    description: "A standardized identity verification system.",
+    tags: ["Security", "Upcoming"],
+    url: "",
   },
   {
     number: "03",
-    name: "Desktop Automation Tools",
-    type: "Everyday utilities",
-    description: "An autotyper, autoscroller, and autoclicker in one toolkit.",
-    tags: ["Python", "Automation"],
-    visual: "visual-morrow",
-    url: "https://github.com/CtrlAltSpace/Desktop-Automation-Tools",
-  },
-  {
-    number: "04",
-    name: "Finance Manager",
-    type: "Desktop application",
-    description: "A desktop app to help manage your finances.",
-    tags: ["Python", "Utility"],
-    visual: "visual-lumen",
-    url: "https://github.com/CtrlAltSpace/Finance-Manager",
+    name: "Serene AI",
+    type: "AI chatbot",
+    description: "---",
+    tags: ["AI", "Planned"],
+    url: "",
   },
   {
     number: "--",
@@ -56,24 +99,34 @@ const projects = [
     description:
       "The rest of the experiments, utilities, and curiosities in the lab.",
     tags: ["GitHub", "Archive"],
-    visual: "visual-afterlight",
     url: "https://github.com/CtrlAltSpace?tab=repositories",
   },
+  
 ];
+
+projects.forEach(ensureProjectVisual);
 
 const path = window.location.pathname;
 const page =
   path === "/projects" ? "projects" : path === "/about" ? "about" : "home";
 const arrow = '<span aria-hidden="true">↗</span>';
 
-const projectCard = (project, compact = false) => `
-  <article class="project-card ${compact ? "project-card--compact" : ""}">
-    <div class="project-visual ${project.visual}"><span class="visual-index">${project.number}</span><span class="visual-mark">✳</span><div class="visual-lines"></div></div>
-    <div class="project-info"><div><p class="eyebrow">${project.type}</p><h3>${project.name}</h3></div><p class="project-description">${project.description}</p><div class="project-footer"><div class="tag-list">${project.tags.map((tag) => `<span>${tag}</span>`).join("")}</div><a class="text-link" href="${project.url}" target="_blank" rel="noreferrer">View ${arrow}</a></div></div>
-  </article>`;
+const projectCard = (project, compact = false) => {
+  const safeProject = ensureProjectVisual({ ...project });
+  const useLogoFallback = safeProject.logo && !safeProject.image;
+  const visualMarkup = safeProject.image
+    ? `<div class="project-visual project-visual--image"><img src="${safeProject.image}" alt="${safeProject.name} preview" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-star').style.opacity='1';" /><span class="visual-mark asset-mark"><span class="fallback-star">✳</span></span></div>`
+    : `<div class="project-visual ${safeProject.visual}"><span class="visual-index">${safeProject.number}</span>${useLogoFallback ? `<span class="visual-mark asset-mark"><img src="${safeProject.logo}" alt="${safeProject.name} logo" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-star').style.opacity='1';" /><span class="fallback-star">✳</span></span>` : `<span class="visual-mark asset-mark visual-mark--fallback"><span class="fallback-star">✳</span></span>`}<div class="visual-lines"></div></div>`;
+
+  return `
+    <article class="project-card ${compact ? "project-card--compact" : ""}">
+      ${visualMarkup}
+      <div class="project-info"><div><p class="eyebrow">${safeProject.type}</p><h3>${safeProject.name}</h3></div><p class="project-description">${safeProject.description}</p><div class="project-footer"><div class="tag-list">${safeProject.tags.map((tag) => `<span>${tag}</span>`).join("")}</div><a class="text-link" href="${safeProject.url}" target="_blank" rel="noreferrer">View ${arrow}</a></div></div>
+    </article>`;
+};
 
 const header = (active) =>
-  `<header class="site-header"><a href="/" class="wordmark"><span class="wordmark-symbol">✳</span><span>CurioSpace<br /><em>Labs</em></span></a><nav>${[
+  `<header class="site-header"><a href="/" class="wordmark"><span class="wordmark-symbol asset-mark"><img src="/assets/logo-mark.svg" alt="" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-star').style.opacity='1';" /><span class="fallback-star">✳</span></span><span>CurioSpace<br /><em>Labs</em></span></a><nav>${[
     ["home", "Index", "/"],
     ["projects", "Projects", "/projects"],
     ["about", "About", "/about"],
@@ -92,9 +145,9 @@ const homePage = `<main><section class="hero section-grid"><div class="hero-copy
   .map((project) => projectCard(project))
   .join(
     "",
-  )}</div></section><section class="manifesto section-grid"><p class="eyebrow">A note from the lab</p><blockquote>“The best tools don’t ask for your attention. They give it back.”</blockquote><p class="manifesto-signature">— The CurioSpace team</p></section></main>${footer}`;
+  )}</div></section><section class="manifesto section-grid"><p class="eyebrow">A note from our Founder & Owner</p><blockquote>“The best tools don’t ask for your attention. They give it back.”</blockquote><p class="manifesto-signature">- CtrlAltSpace</p></section></main>${footer}`;
 const projectsPage = `<main><section class="page-hero section-grid"><p class="eyebrow">The archive</p><h1>Things we’ve<br /><span>made curious.</span></h1><p class="page-intro">A selection of products, experiments, and places we’ve helped bring to life. Some are out in the world. Some are still becoming.</p></section><section class="archive section-grid"><div class="archive-toolbar"><span>06 projects</span><span>Sorted by <strong>featured</strong> ↕</span></div><div class="project-grid project-grid--archive">${projects.map((project) => projectCard(project, true)).join("")}</div></section></main>${footer}`;
-const aboutPage = `<main><section class="page-hero about-hero section-grid"><p class="eyebrow">About the lab / Since 2026</p><h1>Stay curious.<br /><span>Build carefully.</span></h1><p class="page-intro">CurioSpace is an independent software studio for the in-between spaces: where a question becomes a product, where a messy system becomes a clear one, where technology starts to feel human.</p></section><section class="about-body section-grid"><div class="about-aside"><p class="eyebrow">Our point of view</p><div class="about-stamp">✳<br /><small>About<br />us</small></div></div><div class="about-copy"><p>We started CurioSpace because we believe the world has enough software that demands more from us. More clicks. More context switching. More urgency disguised as progress.</p><p>We’re interested in the opposite: tools that create a little more space. Space to notice, to decide, to make the work your own. We work across product strategy, experience design, and engineering to make that space real.</p><div class="principles"><div><span>01</span><h3>Ask better questions</h3><p>Before we reach for an answer, we find the question underneath it.</p></div><div><span>02</span><h3>Make the complex clear</h3><p>Good design doesn’t oversimplify. It helps people see what matters.</p></div><div><span>03</span><h3>Leave room for surprise</h3><p>The most memorable details are rarely the ones in the brief.</p></div></div></div></section><section class="about-cta section-grid"><p class="eyebrow">Let’s explore</p><div><h2>Have a good question?</h2><a class="button-link" href="mailto:hello@curiospace.studio">Say hello ${arrow}</a></div></section></main>${footer}`;
+const aboutPage = `<main><section class="page-hero about-hero section-grid"><p class="eyebrow">About the lab / Since 2026</p><h1>Stay curious.<br /><span>Build carefully.</span></h1><p class="page-intro">CurioSpace is an independent software studio for the in-between spaces: where a question becomes a product, where a messy system becomes a clear one, where technology starts to feel human.</p></section><section class="about-body section-grid"><div class="about-aside"><p class="eyebrow">Our point of view</p><div class="about-stamp asset-mark"><img src="/assets/logo-mark.svg" alt="" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-star').style.opacity='1';" /><span class="fallback-star">✳</span><small>About<br />us</small></div></div><div class="about-copy"><p>We started CurioSpace because we believe the world has enough software that demands more from us. More clicks. More context switching. More urgency disguised as progress.</p><p>We’re interested in the opposite: tools that create a little more space. Space to notice, to decide, to make the work your own. We work across product strategy, experience design, and engineering to make that space real.</p><div class="principles"><div><span>01</span><h3>Ask better questions</h3><p>Before we reach for an answer, we find the question underneath it.</p></div><div><span>02</span><h3>Make the complex clear</h3><p>Good design doesn’t oversimplify. It helps people see what matters.</p></div><div><span>03</span><h3>Leave room for surprise</h3><p>The most memorable details are rarely the ones in the brief.</p></div></div></div></section><section class="about-cta section-grid"><p class="eyebrow">Let’s explore</p><div><h2>Have a good question?</h2><a class="button-link" href="mailto:hello@curiospace.studio">Say hello ${arrow}</a></div></section></main>${footer}`;
 
 document.querySelector("#app").innerHTML =
   `${header(page)}${page === "home" ? homePage : page === "projects" ? projectsPage : aboutPage}`;
@@ -113,7 +166,7 @@ if (page === "home") {
   document.querySelector(".intro-text > p").textContent =
     "We build desktop applications, web projects, Discord bots, and other useful or delightfully silly experiments from scratch that most importantly does good for the people.";
   document.querySelector(".manifesto blockquote").textContent =
-    "Everything starts with your curiosity. Then developed using creativity.";
+    "Everything starts with your curiosity.";
 }
 
 if (page === "about") {
