@@ -30,7 +30,7 @@ const projects = [
   //   url: "#",
   // },
   // {
-  //   number: "00",
+  //   number: "--",
   //   name: "Example project",
   //   type: "Example using random visual and logo",
   //   description: "This project uses a random visual with a logo.",
@@ -39,7 +39,7 @@ const projects = [
   //   url: "#",
   // },
   // {
-  //   number: "00",
+  //   number: "--",
   //   name: "Example project",
   //   type: "Example using image",
   //   description: "This project uses a stated visual instead of an image.",
@@ -53,7 +53,7 @@ const projects = [
     type: "Discord companion",
     description:
       "An AI assistant for brainstorming, answers, and smoother Discord conversations.",
-    tags: ["Discord", "AI", "Deprecated"],
+    tags: ["Discord", "AI", "Live"],
     url: "https://discord.com/oauth2/authorize?client_id=1496119217366372402",
   },
   // {
@@ -69,15 +69,23 @@ const projects = [
   {
     number: "01",
     name: "C.A.P.T.C.H.A.",
-    type: "Computer vision",
+    type: "Computer access",
     description:
       "Computer Access Protection through Triggered Camera & Human Analysis.",
     tags: ["Python", "Security", "Work in progress"],
     url: "https://github.com/CtrlAltSpace/CAPTCHA",
   },
-
   {
     number: "02",
+    name: "Project 3",
+    type: "Computer vision",
+    description:
+      "Detects, tracks, and analyzes people in real-time even on crowded spaces and only one camera feed.",
+    tags: ["Safety", "Security", "Under development"],
+    url: "",
+  },
+  {
+    number: "03",
     name: "VerID",
     type: "---",
     description: "A standardized identity verification system.",
@@ -85,7 +93,7 @@ const projects = [
     url: "",
   },
   {
-    number: "03",
+    number: "04",
     name: "Serene AI",
     type: "AI chatbot",
     description: "---",
@@ -138,7 +146,7 @@ const header = (active) =>
     .join(
       "",
     )}</nav><a class="header-contact" href="mailto:ctrlaltspace.prod@proton.me">Say hello ${arrow}</a></header>`;
-const footer = `<footer class="site-footer"><div class="footer-top"><div class="footer-title">Let’s build<br /><span>something impactful.</span></div><a class="round-link" href="mailto:ctrlaltspace.prod@proton.me">Start a conversation ${arrow}</a></div><div class="footer-bottom"><span>© 2026 CtrlAltSpace Productions</span><span>Curiosity · Creativity · Progress · Impact</span><div class="footer-links"><a href="https://github.com/CtrlAltSpace" target="_blank" rel="noreferrer">GitHub</a><a href="https://discord.com/users/1399691329671266304" target="_blank" rel="noreferrer">Discord</a></div></div></footer>`;
+const footer = `<footer class="site-footer"><div class="footer-top"><div class="footer-title">Let’s build<br /><span>something impactful.</span></div><a class="round-link" href="mailto:ctrlaltspace.prod@proton.me">Start a conversation ${arrow}</a></div><div class="footer-bottom"><span>© 2026 CurioSpace Labs</span><span>Curiosity · Creativity · Progress · Impact</span><div class="footer-links"><a href="mailto:ctrlaltspace.prod@proton.me" target="_blank" rel="noreferrer">Email</a><a href="https://github.com/CtrlAltSpace" target="_blank" rel="noreferrer">GitHub</a><a href="https://discord.com/users/1399691329671266304" target="_blank" rel="noreferrer">Discord</a></div></div></footer>`;
 
 const homePage = `<main><section class="hero section-grid"><div class="hero-copy"><p class="eyebrow reveal">Independent software studio <span class="pulse-dot"></span> Est. 2026</p><h1 class="reveal">We build<br /><span>room to think.</span></h1><p class="hero-intro reveal">CurioSpace Labs makes digital tools for curious people — the kind that turn complexity into clarity and everyday work into a little more possibility.</p><a class="button-link reveal" href="/projects">Explore our work ${arrow}</a></div><div class="hero-art reveal"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit-core">C<br /><span>S</span></div><div class="art-caption">A small studio<br />with a wide orbit</div><span class="art-coord">34° 01' N<br />118° 29' W</span></div></section><section class="intro-strip section-grid"><p class="eyebrow">What we do</p><div class="intro-text"><p>We partner with ambitious teams to imagine, shape, and ship digital products that feel obvious in hindsight.</p><a class="text-link" href="/about">More about us ${arrow}</a></div></section><section class="work-section section-grid"><div class="section-heading"><p class="eyebrow">Selected work</p><a class="text-link" href="/projects">View all projects ${arrow}</a></div><div class="project-grid project-grid--home">${projects
   .slice(0, 3)
@@ -146,7 +154,7 @@ const homePage = `<main><section class="hero section-grid"><div class="hero-copy
   .join(
     "",
   )}</div></section><section class="manifesto section-grid"><p class="eyebrow">A note from our Founder & Owner</p><blockquote>“The best tools don’t ask for your attention. They give it back.”</blockquote><p class="manifesto-signature">- CtrlAltSpace</p></section></main>${footer}`;
-const projectsPage = `<main><section class="page-hero section-grid"><p class="eyebrow">The archive</p><h1>Things we’ve<br /><span>made curious.</span></h1><p class="page-intro">A selection of products, experiments, and places we’ve helped bring to life. Some are out in the world. Some are still becoming.</p></section><section class="archive section-grid"><div class="archive-toolbar"><span>06 projects</span><span>Sorted by <strong>featured</strong> ↕</span></div><div class="project-grid project-grid--archive">${projects.map((project) => projectCard(project, true)).join("")}</div></section></main>${footer}`;
+const projectsPage = `<main><section class="page-hero section-grid"><p class="eyebrow">The archive</p><h1>Things we’ve<br /><span>made curious.</span></h1><p class="page-intro">A selection of products, experiments, and places we’ve helped bring to life. Some are out in the world. Some are still becoming.</p></section><section class="archive section-grid"><div class="archive-toolbar"><span>05 projects</span><span>Sorted by: <strong>newest-latest</strong> ↕</span></div><div class="project-grid project-grid--archive">${projects.map((project) => projectCard(project, true)).join("")}</div></section></main>${footer}`;
 const aboutPage = `<main><section class="page-hero about-hero section-grid"><p class="eyebrow">About the lab / Since 2026</p><h1>Stay curious.<br /><span>Build carefully.</span></h1><p class="page-intro">CurioSpace is an independent software studio for the in-between spaces: where a question becomes a product, where a messy system becomes a clear one, where technology starts to feel human.</p></section><section class="about-body section-grid"><div class="about-aside"><p class="eyebrow">Our point of view</p><div class="about-stamp asset-mark"><img src="/assets/logo-mark.svg" alt="" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-star').style.opacity='1';" /><span class="fallback-star">✳</span><small>About<br />us</small></div></div><div class="about-copy"><p>We started CurioSpace because we believe the world has enough software that demands more from us. More clicks. More context switching. More urgency disguised as progress.</p><p>We’re interested in the opposite: tools that create a little more space. Space to notice, to decide, to make the work your own. We work across product strategy, experience design, and engineering to make that space real.</p><div class="principles"><div><span>01</span><h3>Ask better questions</h3><p>Before we reach for an answer, we find the question underneath it.</p></div><div><span>02</span><h3>Make the complex clear</h3><p>Good design doesn’t oversimplify. It helps people see what matters.</p></div><div><span>03</span><h3>Leave room for surprise</h3><p>The most memorable details are rarely the ones in the brief.</p></div></div></div></section><section class="about-cta section-grid"><p class="eyebrow">Let’s explore</p><div><h2>Have a good question?</h2><a class="button-link" href="mailto:hello@curiospace.studio">Say hello ${arrow}</a></div></section></main>${footer}`;
 
 document.querySelector("#app").innerHTML =
