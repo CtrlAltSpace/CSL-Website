@@ -134,7 +134,7 @@ const projectCard = (project, compact = false) => {
 };
 
 const header = (active) =>
-  `<header class="site-header"><a href="/" class="wordmark"><span class="wordmark-symbol asset-mark"><img src="/assets/logo-mark.svg" alt="" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-star').style.opacity='1';" /><span class="fallback-star">✳</span></span><span>CurioSpace<br /><em>Labs</em></span></a><nav>${[
+  `<header class="site-header"><a href="/" class="wordmark"><span class="wordmark-symbol asset-mark"><img src="/assets/logo-mark.svg" alt="" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-star').style.opacity='1';" /><span class="fallback-star">✳</span></span><span>CurioSpace<br /><em>Labs</em></span></a><nav class="site-nav" id="primary-navigation">${[
     ["home", "Index", "/"],
     ["projects", "Projects", "/projects"],
     ["about", "About", "/about"],
@@ -145,8 +145,8 @@ const header = (active) =>
     )
     .join(
       "",
-    )}</nav><a class="header-contact" href="mailto:ctrlaltspace.prod@proton.me">Say hello ${arrow}</a></header>`;
-const footer = `<footer class="site-footer"><div class="footer-top"><div class="footer-title">Let’s build<br /><span>something impactful.</span></div><a class="round-link" href="mailto:ctrlaltspace.prod@proton.me">Start a conversation ${arrow}</a></div><div class="footer-bottom"><span>© 2026 CurioSpace Labs</span><span>Curiosity · Creativity · Progress · Impact</span><div class="footer-links"><a href="mailto:ctrlaltspace.prod@proton.me" target="_blank" rel="noreferrer">Email</a><a href="https://github.com/CtrlAltSpace" target="_blank" rel="noreferrer">GitHub</a><a href="https://discord.com/users/1399691329671266304" target="_blank" rel="noreferrer">Discord</a></div></div></footer>`;
+    )}</nav><a class="header-contact" href="mailto:ctrlaltspace.prod@proton.me">Say hello ${arrow}</a><button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation"><span></span><span></span><span></span></button></header>`;
+const footer = `<footer class="site-footer"><div class="footer-top"><div class="footer-title">Let’s build<br /><span>something impactful.</span></div><a class="round-link" href="mailto:ctrlaltspace.prod@proton.me">Start a conversation ↗</a></div><div class="footer-bottom"><span>© 2026 CurioSpace Labs</span><span>Curiosity · Creativity · Progress · Impact</span><div class="footer-links"><a href="mailto:ctrlaltspace.prod@proton.me" target="_blank" rel="noreferrer">Email</a><a href="https://github.com/CtrlAltSpace" target="_blank" rel="noreferrer">GitHub</a><a href="https://discord.com/users/1399691329671266304" target="_blank" rel="noreferrer">Discord</a></div></div></footer>`;
 
 const homePage = `<main><section class="hero section-grid"><div class="hero-copy"><p class="eyebrow reveal">Independent software studio <span class="pulse-dot"></span> Est. 2026</p><h1 class="reveal">We build<br /><span>room to think.</span></h1><p class="hero-intro reveal">CurioSpace Labs makes digital tools for curious people — the kind that turn complexity into clarity and everyday work into a little more possibility.</p><a class="button-link reveal" href="/projects">Explore our work ${arrow}</a></div><div class="hero-art reveal"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit-core">C<br /><span>S</span></div><div class="art-caption">A small studio<br />with a wide orbit</div><span class="art-coord">34° 01' N<br />118° 29' W</span></div></section><section class="intro-strip section-grid"><p class="eyebrow">What we do</p><div class="intro-text"><p>We partner with ambitious teams to imagine, shape, and ship digital products that feel obvious in hindsight.</p><a class="text-link" href="/about">More about us ${arrow}</a></div></section><section class="work-section section-grid"><div class="section-heading"><p class="eyebrow">Selected work</p><a class="text-link" href="/projects">View all projects ${arrow}</a></div><div class="project-grid project-grid--home">${projects
   .slice(0, 3)
@@ -155,10 +155,34 @@ const homePage = `<main><section class="hero section-grid"><div class="hero-copy
     "",
   )}</div></section><section class="manifesto section-grid"><p class="eyebrow">A note from our Founder & Owner</p><blockquote>“The best tools don’t ask for your attention. They give it back.”</blockquote><p class="manifesto-signature">- CtrlAltSpace</p></section></main>${footer}`;
 const projectsPage = `<main><section class="page-hero section-grid"><p class="eyebrow">The archive</p><h1>Things we’ve<br /><span>made curious.</span></h1><p class="page-intro">A selection of products, experiments, and places we’ve helped bring to life. Some are out in the world. Some are still becoming.</p></section><section class="archive section-grid"><div class="archive-toolbar"><span>05 projects</span><span>Sorted by: <strong>newest-latest</strong> ↕</span></div><div class="project-grid project-grid--archive">${projects.map((project) => projectCard(project, true)).join("")}</div></section></main>${footer}`;
-const aboutPage = `<main><section class="page-hero about-hero section-grid"><p class="eyebrow">About the lab / Since 2026</p><h1>Stay curious.<br /><span>Build carefully.</span></h1><p class="page-intro">CurioSpace is an independent software studio for the in-between spaces: where a question becomes a product, where a messy system becomes a clear one, where technology starts to feel human.</p></section><section class="about-body section-grid"><div class="about-aside"><p class="eyebrow">Our point of view</p><div class="about-stamp asset-mark"><img src="/assets/logo-mark.svg" alt="" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-star').style.opacity='1';" /><span class="fallback-star">✳</span><small>About<br />us</small></div></div><div class="about-copy"><p>We started CurioSpace because we believe the world has enough software that demands more from us. More clicks. More context switching. More urgency disguised as progress.</p><p>We’re interested in the opposite: tools that create a little more space. Space to notice, to decide, to make the work your own. We work across product strategy, experience design, and engineering to make that space real.</p><div class="principles"><div><span>01</span><h3>Ask better questions</h3><p>Before we reach for an answer, we find the question underneath it.</p></div><div><span>02</span><h3>Make the complex clear</h3><p>Good design doesn’t oversimplify. It helps people see what matters.</p></div><div><span>03</span><h3>Leave room for surprise</h3><p>The most memorable details are rarely the ones in the brief.</p></div></div></div></section><section class="about-cta section-grid"><p class="eyebrow">Let’s explore</p><div><h2>Have a good question?</h2><a class="button-link" href="mailto:hello@curiospace.studio">Say hello ${arrow}</a></div></section></main>${footer}`;
+const aboutPage = `<main><section class="page-hero about-hero section-grid"><p class="eyebrow">About the lab / Since 2026</p><h1>Stay curious.<br /><span>Build carefully.</span></h1><p class="page-intro">CurioSpace is an independent software studio for the in-between spaces: where a question becomes a product, where a messy system becomes a clear one, where technology starts to feel human.</p></section><section class="about-body section-grid"><div class="about-aside"><p class="eyebrow">Our point of view</p><div class="about-stamp asset-mark"><img src="/assets/logo-mark.svg" alt="" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-star').style.opacity='1';" /><span class="fallback-star">✳</span><small>About<br />us</small></div></div><div class="about-copy"><p>We started CurioSpace because we believe the world has enough software that demands more from us. More clicks. More context switching. More urgency disguised as progress.</p><p>We’re interested in the opposite: tools that create a little more space. Space to notice, to decide, to make the work your own. We work across product strategy, experience design, and engineering to make that space real.</p><div class="principles"><div><span>01</span><h3>Ask better questions</h3><p>Before we reach for an answer, we find the question underneath it.</p></div><div><span>02</span><h3>Make the complex clear</h3><p>Good design doesn’t oversimplify. It helps people see what matters.</p></div><div><span>03</span><h3>Leave room for surprise</h3><p>The most memorable details are rarely the ones in the brief.</p></div></div></div></section><section class="about-cta section-grid"><p class="eyebrow">Let’s explore</p><div><h2>Have a good question?</h2><a class="button-link" href="mailto:hello@curiospace.studio">Say hello ↗</a></div></section></main>${footer}`;
 
 document.querySelector("#app").innerHTML =
   `${header(page)}${page === "home" ? homePage : page === "projects" ? projectsPage : aboutPage}`;
+
+const menuToggle = document.querySelector(".menu-toggle");
+const siteNav = document.querySelector(".site-nav");
+const closeMenu = () => {
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute("aria-label", "Open navigation menu");
+  siteNav.classList.remove("is-open");
+};
+
+menuToggle.addEventListener("click", () => {
+  const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+  menuToggle.setAttribute("aria-expanded", String(!isExpanded));
+  menuToggle.setAttribute(
+    "aria-label",
+    isExpanded ? "Open navigation menu" : "Close navigation menu",
+  );
+  siteNav.classList.toggle("is-open", !isExpanded);
+});
+siteNav.addEventListener("click", (event) => {
+  if (event.target.closest("a")) closeMenu();
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeMenu();
+});
 
 document.querySelector(".hero-art")?.remove();
 
@@ -170,7 +194,7 @@ if (page === "home") {
     "Building software<br /><span>that starts with curiosity</span>";
   hero.querySelector(".hero-intro").textContent =
     "CurioSpace Labs is an indie software studio aiming to create real impact through curiosity and creativity.";
-  hero.querySelector(".button-link").firstChild.textContent = "View projects ";
+  hero.querySelector(".button-link").textContent = "View projects ↗";
   document.querySelector(".intro-text > p").textContent =
     "We build desktop applications, web projects, Discord bots, and other useful or delightfully silly experiments from scratch that most importantly does good for the people.";
   document.querySelector(".manifesto blockquote").textContent =
@@ -190,7 +214,7 @@ if (page === "about") {
     <p>Creativity is also important. It helps make the project better, unique, and original. Here, we just let our mind flow and do whatever we want to make, this is what powers us.</p>
     <p>Every project starts from scratch. We plan with curiosity, use AI tools when they help us think through unfamiliar challenges, and keep learning through the process of building, debugging, and publishing.</p>
     <div class="principles"><div><span>01</span><h3>Curiosity first</h3><p>Questions are where every useful experiment begins.</p></div><div><span>02</span><h3>Develop with creativity</h3><p>Creativity is the key to making projects unique and impactful.</p></div><div><span>03</span><h3>Make it matter</h3><p>Even silly projects should leave people with something.</p></div><div><span>04</span><h3>Keep progressing</h3><p>Start small, learn in public, and keep shipping.</p></div></div>
-    <div class="toolkit"><p class="eyebrow">Our toolkit</p><div class="toolkit-grid"><div><h3>Languages</h3><p>Python · HTML · CSS · JavaScript</p></div><div><h3>Frameworks & libraries</h3><p>Flask · SQLite · Tkinter</p></div><div><h3>Tools & platforms</h3><p>VS Code · Git & GitHub · Arduino</p></div></div></div>`;
+    <div class="toolkit"><p class="eyebrow">Our toolkit</p><div class="toolkit-grid"><div><h3>Languages</h3><p>Python · HTML · CSS · JavaScript</p></div><div><h3>Frameworks & libraries</h3><p>Flask · SQLite · Tkinter · Vite</p></div><div><h3>Tools & platforms</h3><p>VS Code · Git & GitHub · Arduino</p></div></div></div>`;
   document.querySelector(".about-cta h2").textContent =
     "Let's build something together.";
   document.querySelector(".about-cta .button-link").href =
@@ -202,4 +226,33 @@ if (page === "projects") {
     "Our<br /><span>works.</span>";
   document.querySelector(".page-intro").textContent =
     "Desktop applications, web projects, Discord bots, and experiments built from scratch and published for impact.";
+}
+
+if (
+  "IntersectionObserver" in window &&
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+) {
+  const motionTargets = document.querySelectorAll(
+    "main > section:not(.hero), .site-footer, .project-card",
+  );
+  const observer = new IntersectionObserver(
+    (entries, currentObserver) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          currentObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
+  );
+
+  motionTargets.forEach((target, index) => {
+    target.classList.add("motion-reveal");
+    if (target.matches(".project-card")) {
+      const cardIndex = [...target.parentElement.children].indexOf(target);
+      target.style.setProperty("--reveal-delay", `${(cardIndex % 3) * 90}ms`);
+    }
+    observer.observe(target);
+  });
 }
