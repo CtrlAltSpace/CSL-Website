@@ -1,4 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@200&family=Inter:wght@400;500;700&family=Montserrat:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@200&family=Montserrat:wght@500&display=swap");
+
+@font-face {
+  font-family: "Garet";
+  src: url("/fonts/Garet-Book.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
 
 :root {
   --ink: #110d12;
@@ -10,7 +18,7 @@
   --yellow: #d9d457;
   --cyan: #57d99b;
   --font-main: "Garet", "Montserrat", "Arial", sans-serif;
-  --font-secondary: "Inter", "IBM Plex Mono", "Arial", sans-serif;
+  --font-secondary: "Inter", "Arial", sans-serif;
   --font-code: "IBM Plex Mono", "Arial", sans-serif;
   --serif: var(--font-main);
   --sans: var(--font-secondary);
@@ -830,6 +838,9 @@ h1 span,
   .page-hero h1 {
     margin-top: 25px;
   }
+  .about-hero h1 {
+    font-size: clamp(50px, 10vw, 68px);
+  }
   .archive {
     padding-bottom: 75px;
   }
@@ -870,8 +881,7 @@ h1 span,
     line-height: 1.5;
   }
   .footer-bottom > span:nth-child(2) {
-    order: 3;
-    width: 100%;
+    display: none;
   }
   .footer-links {
     margin-left: auto;

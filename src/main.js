@@ -204,7 +204,7 @@ if (page === "home") {
 if (page === "about") {
   document.querySelector(".site-footer .footer-top")?.remove();
   document.querySelector(".page-hero h1").innerHTML =
-    "A little about<br /><span>CurioSpace Labs.</span>";
+    "A little about<br /><span>CurioSpace<br />Labs.</span>";
   document.querySelector(".page-intro").textContent =
     "CurioSpace Labs is an indie software studio aiming to create real impact through curiosity and creativity.";
   document.querySelector(".about-copy").innerHTML = `
