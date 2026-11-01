@@ -1,12 +1,15 @@
 import "./style.css";
 
 const visualTypes = [
+  "visual-aurora",
   "visual-cairn",
   "visual-orbit",
   "visual-lumen",
   "visual-field",
   "visual-morrow",
+  "visual-nova",
   "visual-afterlight",
+  "visual-noir",
 ];
 
 const getRandomVisual = () =>

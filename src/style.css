@@ -359,11 +359,17 @@ h1 span,
   background-position: 0 0;
   transition: background-position 0.4s ease;
 }
-.visual-lumen {
+.visual-cairn {
   background: #314936;
 }
-.visual-lumen .visual-mark {
+.visual-cairn .visual-mark {
   transform: rotate(45deg);
+}
+.visual-lumen {
+  background: #645c30;
+}
+.visual-lumen .visual-mark {
+  transform: rotate(22deg) scale(1.4);
 }
 .visual-field {
   background: #42433e;
@@ -384,11 +390,12 @@ h1 span,
 }
 .visual-orbit .visual-mark {
   color: var(--yellow);
+  transform: rotate(22deg);
 }
-.visual-cairn {
-  background: #40452f;
+.visual-nova {
+  background: #4b5a18;
 }
-.visual-cairn .visual-mark {
+.visual-nova .visual-mark {
   color: var(--acid);
   transform: rotate(22deg);
 }
@@ -397,6 +404,19 @@ h1 span,
 }
 .visual-afterlight .visual-mark {
   color: #d9b1e9;
+}
+.visual-aurora {
+  background: #491425;
+}
+.visual-aurora .visual-mark {
+  color: var(--cyan);
+}
+.visual-noir {
+  background: #1e1e1e;
+}
+.visual-noir .visual-mark {
+  color: var(--yellow);
+  transform: scale(0.8);
 }
 .project-info {
   padding: 21px 20px 20px;
