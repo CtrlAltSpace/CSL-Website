@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://glowing-tribble-x5qv6q79vjw7cqq-5173.app.github.dev/sitemap.xml

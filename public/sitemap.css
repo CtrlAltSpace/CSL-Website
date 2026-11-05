@@ -1,0 +1,46 @@
+@namespace sitemap url("http://www.sitemaps.org/schemas/sitemap/0.9");
+
+* {
+  box-sizing: border-box;
+}
+
+sitemap|urlset {
+  display: block;
+  min-height: 100vh;
+  padding: clamp(1.5rem, 6vw, 5rem);
+  background: #110d12;
+  color: #f5f2e1;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+sitemap|urlset::before {
+  display: block;
+  width: min(100%, 60rem);
+  margin: 0 auto 0.75rem;
+  color: #7ed957;
+  content: "CURIOSPACE LABS · SITEMAP";
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+sitemap|urlset::after {
+  display: block;
+  width: min(100%, 60rem);
+  margin: 0 auto 2rem;
+}
+
+sitemap|url {
+  display: block;
+  width: min(100%, 60rem);
+  margin: 0 auto;
+  border-top: 1px solid #3b3938;
+  padding: 1.1rem 0;
+}
+
+sitemap|loc {
+  display: block;
+  color: #57d99b;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  overflow-wrap: anywhere;
+}
