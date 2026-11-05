@@ -75,8 +75,8 @@ a {
   position: relative;
   display: inline-grid;
   place-items: center;
-  width: 23px;
-  height: 23px;
+  width: 64px;
+  height: 64px;
   color: var(--acid);
   font-size: 23px;
   line-height: 1;
@@ -335,11 +335,14 @@ h1 span,
   opacity: 1;
 }
 .project-visual .asset-mark img,
-.wordmark-symbol .asset-mark img,
 .about-stamp .asset-mark img {
   width: 78%;
   height: 78%;
   object-fit: contain;
+}
+.wordmark-symbol img {
+  width: 100%;
+  height: 100%;
 }
 .project-visual--image .fallback-star {
   opacity: 0;

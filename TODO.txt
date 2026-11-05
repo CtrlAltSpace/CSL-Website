@@ -1,5 +1,0 @@
-TODO:
- * Change email to CSL's
- * add transparent logo
- * also add the logo in .ico form
- * need to make own fonts before full public release (name: curio sans)
